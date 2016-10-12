@@ -2,6 +2,6 @@
 
 @interface OpenALPR : CDVPlugin
 
-- (void) getString:(CDVInvokedUrlCommand*)command;
+- (void) scan:(CDVInvokedUrlCommand*)command;
 
 @end
