@@ -9,12 +9,12 @@
     //NSArray *dataArray = @[@"AA12BB", @"Test"];
 
     self.plateScanner = [[PlateScanner alloc] init];
-    //self.plateScanner = [PlateScanner new];
     self.plates = [NSMutableArray arrayWithCapacity:0];
 
     //Temporary use hardcoded filepath
     NSString *plateFilename = @"nl-optie2.jpg";
     NSString *imagePath = [[NSBundle mainBundle] pathForResource:plateFilename ofType:nil];
+    CDVPluginResult* pluginResult = nil;
 
     //Check if imagePath exists
     if (imagePath) {
@@ -23,10 +23,17 @@
         [self.plateScanner
          scanImage:image
          onSuccess:^(NSArray * results) {
-             [self.plates addObjectsFromArray:results];
+
+             for(Plate* plate in results) {
+                 NSDictionary *dic = @{
+                                       @"number" : plate.number,
+                                       @"confidence" : [NSNumber numberWithInt:plate.confidence]
+                                       };
+                 [self.plates addObject:dic];
+             }
 
              NSLog(@"Success!" );
-             NSLog(@"Number of items in my array is: %lu", (unsigned long)[results count]);
+             NSLog(@"%@", self.plates);
          }
          onFailure:^(NSError * error) {
              dispatch_async(dispatch_get_main_queue(), ^{
@@ -34,14 +41,15 @@
             });
          }];
 
+        pluginResult = [ CDVPluginResult
+                                         resultWithStatus    : CDVCommandStatus_OK
+                                         messageAsArray: self.plates];
     }
     else {
         NSLog(@"Error :(");
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Error in reading filepath"];
     }
 
-    CDVPluginResult *pluginResult = [ CDVPluginResult
-                                      resultWithStatus    : CDVCommandStatus_OK
-                                      messageAsArray : self.plates];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
