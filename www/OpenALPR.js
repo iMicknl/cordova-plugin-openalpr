@@ -10,26 +10,20 @@ var OpenALPR = {
 		exec(null, null, "OpenALPR", "echo", [message]); //TODO Add succes & error handler
 	},
 
-	scan: function (filepath) {
-		console.log('called scan');
-		exec(null, null, "OpenALPR", "scan", [filepath]); //TODO Add succes & error handler
-	},
-
-	getString: function() {
-		console.log('Called getString');
+	scan: function(filepath) {
+		console.log('called scan for: ' + filepath);
 		exec(
 			function callback(data) {
 				console.log(data);
 			},
-			function errorHandler(err) {
-				console.log('Error');
+			function error(err) {
+				console.error(err);
 			},
 			'OpenALPR',
-			'getString',
-			[]
+			'scan',
+			[filepath]
 		)
 	}
-
 };
 
 module.exports = OpenALPR;
