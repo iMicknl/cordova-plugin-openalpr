@@ -5,11 +5,12 @@ var exec = require('cordova/exec');
 
 var OpenALPR = {
 
-	echo: function (message) {
-		console.log('called echo');
-		exec(null, null, "OpenALPR", "echo", [message]); //TODO Add succes & error handler
-	},
-
+    /**
+     * Scan license plate with OpenALPR
+     *
+     * @param filepath Path to image
+     * @returns array licenseplate matches
+     */
 	scan: function(filepath) {
 		console.log('called scan for: ' + filepath);
 		exec(
