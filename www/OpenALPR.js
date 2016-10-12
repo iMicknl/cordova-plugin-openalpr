@@ -16,6 +16,7 @@ var OpenALPR = {
 		exec(
 			function callback(data) {
 				console.log(data);
+				alert(data[0].number);
 			},
 			function error(err) {
 				console.error(err);

@@ -6,15 +6,16 @@
 @implementation OpenALPR
 
 -(void) scan:(CDVInvokedUrlCommand *)command {
-    //NSArray *dataArray = @[@"AA12BB", @"Test"];
 
+    //TODO Move to subthread
     self.plateScanner = [[PlateScanner alloc] init];
     self.plates = [NSMutableArray arrayWithCapacity:0];
 
-    //Temporary use hardcoded filepath
-    NSString *plateFilename = @"nl-optie2.jpg";
-    NSString *imagePath = [[NSBundle mainBundle] pathForResource:plateFilename ofType:nil];
+    NSString* imagePath = [command.arguments objectAtIndex:0];
     CDVPluginResult* pluginResult = nil;
+
+    //TODO Check if necessary
+    imagePath = [imagePath stringByReplacingOccurrencesOfString:@"file://" withString:@""];
 
     //Check if imagePath exists
     if (imagePath) {
