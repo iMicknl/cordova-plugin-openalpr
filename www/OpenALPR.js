@@ -11,7 +11,7 @@ var OpenALPR = {
 	},
 
 	scan: function (filepath) {
-		console.log('called scan');
+		console.log('called scan for: ' + filepath);
 		exec(
 			function callback(data) {
 				console.log(data);
