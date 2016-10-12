@@ -15,7 +15,13 @@
         </config-file>
 
 	    <header-file src="src/ios/OpenALPR.h" />
-	    <source-file src="src/ios/OpenALPR.m" />
+	    <source-file src="src/ios/OpenALPR.mm" />
+
+        <header-file src="src/ios/Plate.h" />
+        <source-file src="src/ios/Plate.mm" />
+
+        <header-file src="src/ios/PlateScanner.h" />
+        <source-file src="src/ios/PlateScanner.m" />
 
 		<framework src="libc++.tbd" />
         <framework src="src/ios/lib/leptonica.framework" custom="true" />
