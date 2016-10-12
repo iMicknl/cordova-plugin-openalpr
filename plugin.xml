@@ -3,6 +3,13 @@
     <name>OpenALPR</name>
 	<description>OpenALPR Cordova Plugin</description>
 
+    <author email="melvin@melvinv.com" href="http://melvinv.com">
+        Melvin Versluis
+    </author>
+    <author email="mick@imick.nl" href="http://imick.nl">
+        Mick Vleeshouwer
+    </author>
+
     <js-module name="OpenALPR" src="www/OpenALPR.js">
         <clobbers target="cordova.plugins.OpenALPR" />
     </js-module>
