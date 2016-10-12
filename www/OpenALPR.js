@@ -13,6 +13,21 @@ var OpenALPR = {
 	scan: function (filepath) {
 		console.log('called scan');
 		exec(null, null, "OpenALPR", "scan", [filepath]); //TODO Add succes & error handler
+	},
+
+	getString: function() {
+		console.log('Called getString');
+		exec(
+			function callback(data) {
+				console.log(data);
+			},
+			function errorHandler(err) {
+				console.log('Error');
+			},
+			'OpenALPR',
+			'getString',
+			[]
+		)
 	}
 
 };

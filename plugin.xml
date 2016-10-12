@@ -4,7 +4,7 @@
 	<description>OpenALPR Cordova Plugin</description>
 
     <js-module name="OpenALPR" src="www/OpenALPR.js">
-        <clobbers target="OpenALPR" />
+        <clobbers target="cordova.plugins.OpenALPR" />
     </js-module>
 
     <platform name="ios">
