@@ -1,9 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <plugin id="cordova-plugin-openalpr" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>OpenALPR</name>
+	<description>OpenALPR Cordova Plugin</description>
 
     <js-module name="OpenALPR" src="www/OpenALPR.js">
-        <clobbers target="cordova.plugins.OpenALPR" />
+        <clobbers target="OpenALPR" />
     </js-module>
 
     <platform name="ios">
@@ -13,14 +14,14 @@
             </feature>
         </config-file>
 
-        <!--<header-file src="src/ios/OpenALPR-Bridging-Header.h"/>-->
-        <!--<source-file src="src/ios/OpenALPR.swift" />-->
+	    <header-file src="src/ios/OpenALPR.h" />
+	    <source-file src="src/ios/OpenALPR.m" />
 
-        <framework src="libc++.tbd" />
+		<framework src="libc++.tbd" />
         <framework src="src/ios/lib/leptonica.framework" custom="true" />
-        <framework src="src/ios/lib/openalpr.framework" custom="true" />
-        <framework src="src/ios/lib/opencv2.framework" custom="true" />
-        <framework src="src/ios/lib/tesseract.framework" custom="true" />
+	    <framework src="src/ios/lib/tesseract.framework" custom="true" />
+	    <framework src="src/ios/lib/opencv2.framework" custom="true" />
+	    <framework src="src/ios/lib/openalpr.framework" custom="true" />
 
         <dependency id="cordova-plugin-add-swift-support" version="1.3.2"/>
     </platform>
