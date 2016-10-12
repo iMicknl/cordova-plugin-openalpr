@@ -21,7 +21,7 @@
         <source-file src="src/ios/Plate.mm" />
 
         <header-file src="src/ios/PlateScanner.h" />
-        <source-file src="src/ios/PlateScanner.m" />
+        <source-file src="src/ios/PlateScanner.mm" />
 
 		<framework src="libc++.tbd" />
         <framework src="src/ios/lib/leptonica.framework" custom="true" />
