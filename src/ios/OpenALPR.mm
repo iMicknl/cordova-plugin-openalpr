@@ -28,13 +28,10 @@
              for(Plate* plate in results) {
                  NSDictionary *dic = @{
                                        @"number" : plate.number,
-                                       @"confidence" : [NSNumber numberWithInt:plate.confidence]
+                                       @"confidence" : [NSNumber numberWithFloat:plate.confidence]
                                        };
                  [self.plates addObject:dic];
              }
-
-             NSLog(@"Success!" );
-             NSLog(@"%@", self.plates);
          }
          onFailure:^(NSError * error) {
              dispatch_async(dispatch_get_main_queue(), ^{
