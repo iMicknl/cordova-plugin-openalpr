@@ -8,7 +8,6 @@
 -(void) scan:(CDVInvokedUrlCommand *)command {
 
     [self.commandDelegate runInBackground:^{
-        //TODO Move to subthread
         self.plateScanner = [[PlateScanner alloc] init];
         self.plates = [NSMutableArray arrayWithCapacity:0];
 
