@@ -9,17 +9,15 @@ var OpenALPR = {
      * Scan license plate with OpenALPR
      *
      * @param filepath Path to image
+     * @param success callback function on success
+     * @param error callback function on failure.
      * @returns array licenseplate matches
      */
-	scan: function(filepath) {
+	scan: function(filepath, success, error) {
 		console.log('called scan for: ' + filepath);
 		exec(
-			function callback(data) {
-				console.log(data);
-			},
-			function error(err) {
-				console.error(err);
-			},
+			success,
+			error,
 			'OpenALPR',
 			'scan',
 			[filepath]
