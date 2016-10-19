@@ -6,6 +6,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+//import com.openalpr.jni.Alpr;
+//import com.openalpr.jni.AlprPlate;
+//import com.openalpr.jni.AlprPlateResult;
+//import com.openalpr.jni.AlprResults;
+
 import android.util.Log;
 
 import java.io.File;
@@ -58,6 +63,26 @@ public class OpenALPR extends CordovaPlugin {
 
             if (imageExists) {
                 Log.v("OpenALPR", imagePath);
+
+                //TODO Move to other place
+//                Alpr alpr = new Alpr("eu", "/path/to/openalpr.conf", "/path/to/runtime_data");
+//                alpr.setTopN(3);
+//
+//                AlprResults results = alpr.recognize(imagePath);
+//                System.out.format("  %-15s%-8s\n", "Plate Number", "Confidence");
+//                for (AlprPlateResult result : results.getPlates())
+//                {
+//                    for (AlprPlate plate : result.getTopNPlates()) {
+//                        if (plate.isMatchesTemplate())
+//                            System.out.print("  * ");
+//                        else
+//                            System.out.print("  - ");
+//                        System.out.format("%-15s%-8f\n", plate.getCharacters(), plate.getOverallConfidence());
+//                    }
+//                }
+//
+//                // Make sure to call this to release memory
+//                alpr.unload();
 
                 callbackContext.success(result);
 
