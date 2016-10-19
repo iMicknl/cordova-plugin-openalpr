@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="cordova-plugin-openalpr" version="0.0.2" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+<plugin id="cordova-plugin-openalpr" version="0.0.2" xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android">
     <name>OpenALPR</name>
-	<description>OpenALPR Cordova Plugin</description>
+    <description>OpenALPR Cordova Plugin</description>
 
     <author email="melvin.versluijs@hotmail.com" href="http://melvinversluijs.com">
         Melvin Versluis
@@ -11,32 +12,32 @@
     </author>
 
     <js-module name="OpenALPR" src="www/OpenALPR.js">
-        <clobbers target="cordova.plugins.OpenALPR" />
+        <clobbers target="cordova.plugins.OpenALPR"/>
     </js-module>
 
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
             <feature name="OpenALPR">
-                <param name="ios-package" value="OpenALPR" />
+                <param name="ios-package" value="OpenALPR"/>
             </feature>
         </config-file>
 
-	    <header-file src="src/ios/OpenALPR.h" />
-	    <source-file src="src/ios/OpenALPR.mm" />
+        <header-file src="src/ios/OpenALPR.h"/>
+        <source-file src="src/ios/OpenALPR.mm"/>
 
-        <header-file src="src/ios/Plate.h" />
-        <source-file src="src/ios/Plate.mm" />
+        <header-file src="src/ios/Plate.h"/>
+        <source-file src="src/ios/Plate.mm"/>
 
-        <header-file src="src/ios/PlateScanner.h" />
-        <source-file src="src/ios/PlateScanner.mm" />
+        <header-file src="src/ios/PlateScanner.h"/>
+        <source-file src="src/ios/PlateScanner.mm"/>
 
-        <resource-file src="src/openalpr.conf" target="openalpr.conf" />
-        <resource-file src="src/ios/lib/openalpr.framework/runtime_data" target="runtime_data" />
+        <resource-file src="src/openalpr.conf" target="openalpr.conf"/>
+        <resource-file src="src/ios/lib/openalpr.framework/runtime_data" target="runtime_data"/>
 
-        <framework src="libc++.tbd" />
-        <framework src="src/ios/lib/leptonica.framework" custom="true" />
-	    <framework src="src/ios/lib/tesseract.framework" custom="true" />
-	    <framework src="src/ios/lib/opencv2.framework" custom="true" />
-	    <framework src="src/ios/lib/openalpr.framework" custom="true" />
+        <framework src="libc++.tbd"/>
+        <framework src="src/ios/lib/leptonica.framework" custom="true"/>
+        <framework src="src/ios/lib/tesseract.framework" custom="true"/>
+        <framework src="src/ios/lib/opencv2.framework" custom="true"/>
+        <framework src="src/ios/lib/openalpr.framework" custom="true"/>
     </platform>
 </plugin>

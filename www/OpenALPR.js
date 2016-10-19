@@ -1,5 +1,4 @@
 'use strict';
-/* global cordova */
 
 var exec = require('cordova/exec');
 
@@ -14,7 +13,6 @@ var OpenALPR = {
      * @returns array licenseplate matches
      */
 	scan: function(filepath, success, error) {
-		console.log('called scan for: ' + filepath);
 		exec(
 			success,
 			error,
