@@ -6,10 +6,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-//import com.openalpr.jni.Alpr;
-//import com.openalpr.jni.AlprPlate;
-//import com.openalpr.jni.AlprPlateResult;
-//import com.openalpr.jni.AlprResults;
+import com.openalpr.jni.Alpr;
+import com.openalpr.jni.AlprPlate;
+import com.openalpr.jni.AlprPlateResult;
+import com.openalpr.jni.AlprResults;
 
 import android.util.Log;
 
@@ -50,7 +50,7 @@ public class OpenALPR extends CordovaPlugin {
     private void scan(String imagePath, CallbackContext callbackContext) {
 
         //TODO Remove Mock objects
-        JSONArray result = new JSONArray();
+        JSONArray mock_result = new JSONArray();
         JSONObject error = new JSONObject();
 
         // Strip file:// from imagePath where applicable
@@ -65,10 +65,11 @@ public class OpenALPR extends CordovaPlugin {
                 Log.v("OpenALPR", imagePath);
 
                 //TODO Move to other place
-//                Alpr alpr = new Alpr("eu", "/path/to/openalpr.conf", "/path/to/runtime_data");
-//                alpr.setTopN(3);
-//
+                Alpr alpr = new Alpr("eu", "/path/to/openalpr.conf", "/path/to/runtime_data");
+                alpr.setTopN(3);
+
 //                AlprResults results = alpr.recognize(imagePath);
+//
 //                System.out.format("  %-15s%-8s\n", "Plate Number", "Confidence");
 //                for (AlprPlateResult result : results.getPlates())
 //                {
@@ -84,7 +85,7 @@ public class OpenALPR extends CordovaPlugin {
 //                // Make sure to call this to release memory
 //                alpr.unload();
 
-                callbackContext.success(result);
+                callbackContext.success(mock_result);
 
             } else {
                 Log.v("OpenALPR", "Image doesn't exist");
