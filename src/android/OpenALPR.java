@@ -1,13 +1,14 @@
 package org.apache.cordova.openalpr;
 
 import org.apache.cordova.CallbackContext;
-import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
-import org.apache.cordova.CordovaWebView;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.util.Log;
+
+import java.io.File;
 
 public class OpenALPR extends CordovaPlugin {
 
@@ -17,25 +18,72 @@ public class OpenALPR extends CordovaPlugin {
     public OpenALPR() {
     }
 
+    /**
+     * @param action          The action to execute.
+     * @param args            The exec() arguments.
+     * @param callbackContext The callback context used when calling back into JavaScript.
+     * @return boolean
+     * @throws JSONException
+     */
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
         if (action.equals("scan")) {
-            String path = args.getString(0);
-            this.scan(path, callbackContext);
+            String imagePath = args.getString(0);
+            this.scan(imagePath, callbackContext);
             return true;
         }
 
         return true;
     }
 
-    private void scan(String filePath, CallbackContext callbackContext) {
-        if (filePath != null && filePath.length() > 0) {
-            Log.v("OpenALPR", filePath);
-            callbackContext.success(filePath);
-        } else {
-            Log.v("OpenALPR", "No filepath");
+    /**
+     * Returns (via callback) array of license plates found based on the given imagePath
+     *
+     * @param imagePath       path to image
+     * @param callbackContext callback to JavaScript
+     */
+    private void scan(String imagePath, CallbackContext callbackContext) {
 
-            callbackContext.error("No filepath.");
+        //TODO Remove Mock objects
+        JSONArray result = new JSONArray();
+        JSONObject error = new JSONObject();
+
+        // Strip file:// from imagePath where applicable
+        imagePath = imagePath.replace("file://", "");
+
+        //Check if imagePath is available and if image exists
+        if (imagePath != null && imagePath.length() > 0) {
+
+            boolean imageExists = new File(imagePath).isFile();
+
+            if (imageExists) {
+                Log.v("OpenALPR", imagePath);
+
+                callbackContext.success(result);
+
+            } else {
+                Log.v("OpenALPR", "Image doesn't exist");
+
+                try {
+                    error.put("code", 1);
+                    error.put("message", "Image doesn't exist");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                callbackContext.error(error);
+            }
+
+        } else {
+            Log.v("OpenALPR", "No imagePath");
+
+            try {
+                error.put("code", 0);
+                error.put("message", "No imagepath given");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            callbackContext.error(error);
         }
     }
 
