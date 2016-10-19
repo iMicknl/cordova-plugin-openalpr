@@ -12,7 +12,7 @@ _The plugin isn't publised on NPM or the Cordova Plugin Library yet, so only man
 `cordova plugin add https://github.com/iMicknl/cordova-plugin-openalpr.git`
 
 ## How to use
-This plugin defines a global `cordova.plugins.OpenALPR` object, which provides an API for scanning license plates. 
+This plugin defines a global `cordova.plugins.OpenALPR` object, which provides an API for scanning license plates. It is possible to use the output of [cordova-plugin-camera](https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-camera/) and pass it to the scan function of this plugin.
 
 ### Example
 ```
