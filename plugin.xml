@@ -28,7 +28,7 @@
         </config-file>
 
         <source-file src="src/android/OpenALPR.java" target-dir="src/org/apache/cordova/openalpr" />
-        <source-file src="src/android/lib/jni/*.java" target-dir="src/com/openalpr/jni" />
+        <!--<framework src="src/android/lib/jni" target-dir="src/com/openalpr/jni" custom="true"/>-->
 
         <resource-file src="src/openalpr.conf" target="assets/openalpr.conf"/>
         <resource-file src="src/ios/lib/openalpr.framework/runtime_data" target="assets/runtime_data"/> <!-- TODO change to Android -->
