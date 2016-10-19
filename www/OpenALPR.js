@@ -1,5 +1,4 @@
 'use strict';
-/* global cordova */
 
 var exec = require('cordova/exec');
 
