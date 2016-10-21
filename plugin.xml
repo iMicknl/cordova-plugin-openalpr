@@ -25,11 +25,14 @@
         </config-file>
 
         <config-file target="AndroidManifest.xml" parent="/manifest">
-
         </config-file>
 
         <source-file src="src/android/OpenALPR.java" target-dir="src/org/apache/cordova/openalpr"/>
         <source-file src="src/android/lib/jni" target-dir="src/com/openalpr"/>
+
+        <source-file src="src/android/lib/libopenalprjni.so" target-dir="libs"/>
+        <source-file src="src/android/lib/com_openalpr_jni_Alpr.h" target-dir="libs"/>
+        <source-file src="src/android/lib/openalprjni.cpp" target-dir="libs"/>
 
         <!--<framework src="src/android/lib/jni" target-dir="src/com/openalpr/jni" custom="true"/>-->
         <resource-file src="src/openalpr.conf" target="assets/openalpr.conf"/>
