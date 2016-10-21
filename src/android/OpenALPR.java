@@ -63,10 +63,11 @@ public class OpenALPR extends CordovaPlugin {
 
             if (imageExists) {
                 Log.v("OpenALPR", imagePath);
+                callbackContext.success(mock_result);
 
                 //TODO Move to other place
-                Alpr alpr = new Alpr("eu", "/path/to/openalpr.conf", "/path/to/runtime_data");
-                alpr.setTopN(3);
+//                Alpr alpr = new Alpr("eu", "/path/to/openalpr.conf", "/path/to/runtime_data");
+//                alpr.setTopN(3);
 
 //                AlprResults results = alpr.recognize(imagePath);
 //
@@ -84,8 +85,6 @@ public class OpenALPR extends CordovaPlugin {
 //
 //                // Make sure to call this to release memory
 //                alpr.unload();
-
-                callbackContext.success(mock_result);
 
             } else {
                 Log.v("OpenALPR", "Image doesn't exist");
