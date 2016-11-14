@@ -49,43 +49,44 @@ public class OpenALPR extends CordovaPlugin {
      */
     private void scan(String imagePath, CallbackContext callbackContext) {
 
-        //TODO Remove Mock objects
-        JSONArray mock_result = new JSONArray();
-        JSONObject error = new JSONObject();
+        //TODO Move to other place
+        Context context = this.cordova.getActivity().getApplicationContext();
+        String androidDataDir = context.getApplicationInfo().dataDir;
+        Utils.copyAssetFolder(context.getAssets(), "runtime_data", androidDataDir + File.separatorChar + "runtime_data");
 
-        // Strip file:// from imagePath where applicable
-        imagePath = imagePath.replace("file://", "");
+        String runtime_dir = androidDataDir + File.separatorChar + "runtime_data";
+        String conf_file = runtime_dir + File.separatorChar + "openalpr.conf";
 
-        //Check if imagePath is available and if image exists
-        if (imagePath != null && imagePath.length() > 0) {
+        Alpr alpr = new Alpr("eu", conf_file, runtime_dir);
+        alpr.setTopN(3);
+        AlprResults results = null;
 
-            boolean imageExists = new File(imagePath).isFile();
+        try {
+            results = alpr.recognize(imagePath);
+        } catch (AlprException e) {
+            e.printStackTrace();
+        }
 
-            if (imageExists) {
-                Log.v("OpenALPR", imagePath);
-                callbackContext.success(mock_result);
+        JSONArray array = new JSONArray();
+        if(results != null) {
+            for (AlprPlateResult result : results.getPlates()) {
+                for (AlprPlate plate : result.getTopNPlates()) {
+                    JSONObject obj = new JSONObject();
+                    try {
+                        obj.put("number", plate.getCharacters());
+                        obj.put("confidence", plate.getOverallConfidence());
+                        array.put(obj);
+                    } catch(JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
 
-                //TODO Move to other place
-//                Alpr alpr = new Alpr("eu", "/path/to/openalpr.conf", "/path/to/runtime_data");
-//                alpr.setTopN(3);
-
-//                AlprResults results = alpr.recognize(imagePath);
-//
-//                System.out.format("  %-15s%-8s\n", "Plate Number", "Confidence");
-//                for (AlprPlateResult result : results.getPlates())
-//                {
-//                    for (AlprPlate plate : result.getTopNPlates()) {
-//                        if (plate.isMatchesTemplate())
-//                            System.out.print("  * ");
-//                        else
-//                            System.out.print("  - ");
-//                        System.out.format("%-15s%-8f\n", plate.getCharacters(), plate.getOverallConfidence());
-//                    }
-//                }
-//
-//                // Make sure to call this to release memory
-//                alpr.unload();
-
+        PluginResult cordovaResult = new PluginResult(PluginResult.Status.OK, array);
+        // Make sure to call this to release memory
+        alpr.unload();
+        callbackContext.sendPluginResult(cordovaResult);
             } else {
                 Log.v("OpenALPR", "Image doesn't exist");
 
