@@ -15,17 +15,9 @@ import com.openalpr.jni.AlprResults;
 import com.openalpr.util.Utils;
 
 import android.content.Context;
-import android.content.res.AssetManager;
-import android.util.ArrayMap;
 import android.util.Log;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-
-import static android.R.id.message;
 
 public class OpenALPR extends CordovaPlugin {
 
@@ -74,7 +66,7 @@ public class OpenALPR extends CordovaPlugin {
 
             if (imageExists) {
 
-                //TODO Move to other place
+                //Copy assets/runtime_data to accesable android data dir.
                 Context context = this.cordova.getActivity().getApplicationContext();
                 String androidDataDir = context.getApplicationInfo().dataDir;
                 Utils.copyAssetFolder(context.getAssets(), "runtime_data", androidDataDir + File.separatorChar + "runtime_data");
@@ -82,7 +74,7 @@ public class OpenALPR extends CordovaPlugin {
                 String runtime_dir = androidDataDir + File.separatorChar + "runtime_data";
                 String conf_file = runtime_dir + File.separatorChar + "openalpr.conf";
 
-                Alpr alpr = new Alpr("eu", conf_file, runtime_dir);
+                Alpr alpr = new Alpr("eu", conf_file, runtime_dir); //Make new alpr object with country EU and the config files from assets.
                 alpr.setTopN(3);
                 AlprResults results = null;
 
@@ -92,6 +84,7 @@ public class OpenALPR extends CordovaPlugin {
                     e.printStackTrace();
                 }
 
+                //Put OpenALPR results into JSONArray.
                 JSONArray array = new JSONArray();
                 if(results != null) {
                     for (AlprPlateResult result : results.getPlates()) {
@@ -112,7 +105,7 @@ public class OpenALPR extends CordovaPlugin {
 
                 // Make sure to call this to release memory
                 alpr.unload();
-                callbackContext.sendPluginResult(cordovaResult);
+                callbackContext.sendPluginResult(cordovaResult); //Send Cordova results back to callback function.
             } else {
                 Log.v("OpenALPR", "Image doesn't exist");
 
