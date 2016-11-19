@@ -4,6 +4,7 @@ This plugin is an iOS wrapper for the OpenALPR (Automatic License Plate Recognit
 ## Supported platforms
 The current master branch supports the following platforms:
 - iOS (>= 8)
+- Android (>= SDK 21)
 
 ## Installation
 
@@ -23,7 +24,10 @@ cordova.plugins.OpenALPR.scan(filepath, function (data) {
      console.log(error.code + ': ' + error.message)
  });
  ```
+## Notes
+- This project includes prebuilt OpenALPR libraries for iOS and Android, because the compilation of the OpenALPR framework requires a lot of effort and dependencies.
 
 ## Credits
 - License plate scanning based on [OpenALPR](https://github.com/openalpr/openalpr).
 - iOS platform support based on [OpenALPR iOS](https://github.com/twelve17/openalpr-ios).
+- Android platform support based on [OpenALPR Java bindings](https://github.com/openalpr/openalpr/tree/master/src/bindings/java)

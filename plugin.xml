@@ -3,6 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android">
     <name>OpenALPR</name>
     <description>OpenALPR Cordova Plugin</description>
+    <keywords>cordova,openalpr</keywords>
 
     <author email="melvin.versluijs@hotmail.com" href="http://melvinversluijs.com">
         Melvin Versluis
@@ -15,6 +16,23 @@
         <clobbers target="cordova.plugins.OpenALPR"/>
     </js-module>
 
+    <!-- Android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="OpenALPR">
+                <param name="android-package" value="org.apache.cordova.openalpr.OpenALPR"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/OpenALPR.java" target-dir="src/org/apache/cordova/openalpr"/>
+        <source-file src="src/android/lib/jni" target-dir="src/com/openalpr"/>
+        <source-file src="src/android/lib/util" target-dir="src/com/openalpr"/>
+        <source-file src="src/android/lib/armeabi-v7a" target-dir="libs"/>
+        <source-file src="src/android/assets/runtime_data" target-dir="assets"/>
+        <source-file src="src/openalpr.conf" target-dir="assets/runtime_data"/>
+    </platform>
+
+    <!-- iOS -->
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
             <feature name="OpenALPR">

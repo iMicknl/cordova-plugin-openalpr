@@ -18,7 +18,7 @@
         // Strip file:// from imagePath where applicable
         imagePath = [imagePath stringByReplacingOccurrencesOfString:@"file://" withString:@""];
 
-        //Check if imagePath if available and if image exists
+        //Check if imagePath is available and if image exists
         if (imagePath && [self.fileManager fileExistsAtPath:imagePath]) {
             cv::Mat image = imread([imagePath UTF8String], CV_LOAD_IMAGE_COLOR);
 
