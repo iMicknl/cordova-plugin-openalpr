@@ -1,0 +1,13 @@
+android {
+
+    defaultConfig {
+        ndk.abiFilters("armeabi-v7a")
+    }
+
+    externalNativeBuild {
+        ndkBuild {
+            path 'Android.mk'
+        }
+     }
+
+}
