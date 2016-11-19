@@ -1,5 +1,5 @@
 LOCAL_PATH := $(call my-dir)
-LIB_PATH := $(LOCAL_PATH)/lib/armeabi-v7a
+LIB_PATH := $(LOCAL_PATH)/../jniLibs/armeabi-v7a
 
 include $(CLEAR_VARS)
 
