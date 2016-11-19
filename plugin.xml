@@ -27,6 +27,8 @@
         <config-file target="AndroidManifest.xml" parent="/manifest">
         </config-file>
 
+        <framework src="src/android/rules.gradle" custom="true" type="gradleReference" />
+
         <source-file src="src/android/OpenALPR.java" target-dir="src/org/apache/cordova/openalpr"/>
         <source-file src="src/android/lib/jni" target-dir="src/com/openalpr"/>
         <source-file src="src/android/lib/util" target-dir="src/com/openalpr"/>
