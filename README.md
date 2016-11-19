@@ -8,7 +8,7 @@ The current master branch supports the following platforms:
 
 ## Installation
 
-_The plugin isn't publised on NPM or the Cordova Plugin Library yet, so only manual installs are possible._
+_The plugin isn't published on NPM or the Cordova Plugin Library yet, so only manual installs are possible._
 
 `cordova plugin add https://github.com/iMicknl/cordova-plugin-openalpr.git`
 

@@ -20,9 +20,8 @@
     "cordova-android",
     "cordova-ios"
   ],
-  "author": "HZ ICT",
+  "author": "Mick Vleeshouwer <mick@imick.nl> (https://imick.nl)",
   "contributors": [
-    "Mick Vleeshouwer <mick@imick.nl> (https://imick.nl)",
     "Melvin Versluijs <melvin.versluijs@hotmail.com> (http://melvinversluijs.com)"
   ],
   "license": "ISC",
