@@ -25,7 +25,7 @@ cordova.plugins.OpenALPR.scan(filepath, function (data) {
  });
  ```
 ## Notes
-- This project includes prebuilt OpenALPR libraries for iOS and Android, because the compilation of the OpenALPR framework requires a lot of efforts and dependencies.
+- This project includes prebuilt OpenALPR libraries for iOS and Android, because the compilation of the OpenALPR framework requires a lot of effort and dependencies.
 
 ## Credits
 - License plate scanning based on [OpenALPR](https://github.com/openalpr/openalpr).
