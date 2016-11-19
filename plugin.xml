@@ -31,8 +31,6 @@
         <source-file src="src/android/lib/jni" target-dir="src/com/openalpr"/>
         <source-file src="src/android/lib/util" target-dir="src/com/openalpr"/>
         <source-file src="src/android/lib/armeabi-v7a" target-dir="libs"/>
-        <source-file src="src/android/lib/openalprjni.cpp" target-dir="cpp"/>
-        <source-file src="src/android/lib/com_openalpr_jni_Alpr.h" target-dir="cpp"/>
         <source-file src="src/android/assets/runtime_data" target-dir="assets"/>
     </platform>
 
