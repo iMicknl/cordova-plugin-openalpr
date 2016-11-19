@@ -66,7 +66,7 @@ public class OpenALPR extends CordovaPlugin {
 
             if (imageExists) {
 
-                //Copy assets/runtime_data to accesable android data dir.
+                // Copy assets/runtime_data to accessible Android data dir.
                 Context context = this.cordova.getActivity().getApplicationContext();
                 String androidDataDir = context.getApplicationInfo().dataDir;
                 Utils.copyAssetFolder(context.getAssets(), "runtime_data", androidDataDir + File.separatorChar + "runtime_data");
