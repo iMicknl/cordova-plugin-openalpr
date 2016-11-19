@@ -53,9 +53,6 @@ public class OpenALPR extends CordovaPlugin {
      */
     private void scan(String imagePath, CallbackContext callbackContext) {
 
-        //TODO Remove Mock objects
-        JSONObject error = new JSONObject();
-
         // Strip file:// from imagePath where applicable
         imagePath = imagePath.replace("file://", "");
 
@@ -74,7 +71,7 @@ public class OpenALPR extends CordovaPlugin {
                 String runtime_dir = androidDataDir + File.separatorChar + "runtime_data";
                 String conf_file = runtime_dir + File.separatorChar + "openalpr.conf";
 
-                Alpr alpr = new Alpr("eu", conf_file, runtime_dir); //Make new alpr object with country EU and the config files from assets.
+                Alpr alpr = new Alpr("eu", conf_file, runtime_dir); //Make new ALPR object with country EU and the config files from assets.
                 alpr.setTopN(3);
                 AlprResults results = null;
 
@@ -108,6 +105,7 @@ public class OpenALPR extends CordovaPlugin {
                 callbackContext.sendPluginResult(cordovaResult); //Send Cordova results back to callback function.
             } else {
                 Log.v("OpenALPR", "Image doesn't exist");
+                JSONObject error = new JSONObject();
 
                 try {
                     error.put("code", 1);
@@ -120,6 +118,7 @@ public class OpenALPR extends CordovaPlugin {
 
         } else {
             Log.v("OpenALPR", "No imagePath");
+            JSONObject error = new JSONObject();
 
             try {
                 error.put("code", 0);
