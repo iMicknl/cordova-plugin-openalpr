@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-openalpr" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>OpenALPR</name>
+    <description>OpenALPR Cordova Plugin</description>
+    <keywords>cordova,openalpr</keywords>
+
+    <author email="melvin.versluijs@hotmail.com" href="http://melvinversluijs.com">
+        Melvin Versluijs
+    </author>
+    <author email="mick@imick.nl" href="https://imick.nl">
+        Mick Vleeshouwer
+    </author>
+
+    <js-module name="OpenALPR" src="www/OpenALPR.js">
+        <clobbers target="cordova.plugins.OpenALPR"/>
+    </js-module>
+
+    <!-- Android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="OpenALPR">
+                <param name="android-package" value="org.apache.cordova.openalpr.OpenALPR"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/OpenALPR.java" target-dir="src/org/apache/cordova/openalpr"/>
+        <source-file src="src/android/lib/jni" target-dir="src/com/openalpr"/>
+        <source-file src="src/android/lib/util" target-dir="src/com/openalpr"/>
+        <source-file src="src/android/lib/armeabi-v7a" target-dir="libs"/>
+        <source-file src="src/android/assets/runtime_data" target-dir="assets"/>
+        <source-file src="src/openalpr.conf" target-dir="assets/runtime_data"/>
+    </platform>
+
+    <!-- iOS -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="OpenALPR">
+                <param name="ios-package" value="OpenALPR"/>
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/OpenALPR.h"/>
+        <source-file src="src/ios/OpenALPR.mm"/>
+
+        <header-file src="src/ios/Plate.h"/>
+        <source-file src="src/ios/Plate.mm"/>
+
+        <header-file src="src/ios/PlateScanner.h"/>
+        <source-file src="src/ios/PlateScanner.mm"/>
+
+        <resource-file src="src/openalpr.conf" target="openalpr.conf"/>
+        <resource-file src="src/ios/lib/openalpr.framework/runtime_data" target="runtime_data"/>
+
+        <framework src="libc++.tbd"/>
+        <framework src="src/ios/lib/leptonica.framework" custom="true"/>
+        <framework src="src/ios/lib/tesseract.framework" custom="true"/>
+        <framework src="src/ios/lib/opencv2.framework" custom="true"/>
+        <framework src="src/ios/lib/openalpr.framework" custom="true"/>
+    </platform>
+</plugin>
