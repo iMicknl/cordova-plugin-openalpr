@@ -24,7 +24,7 @@
   "contributors": [
     "Melvin Versluijs <melvin.versluijs@hotmail.com> (http://melvinversluijs.com)"
   ],
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/iMicknl/cordova-plugin-openalpr/issues"
   },
