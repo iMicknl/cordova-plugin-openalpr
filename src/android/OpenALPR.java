@@ -66,7 +66,7 @@ public class OpenALPR extends CordovaPlugin {
 
         // Strip file:// from imagePath where applicable
         imagePath = imagePath.replace("file://", "");
-        System.out.println("Path: " + imagePath);
+
         //Check if imagePath is available and if image exists
         if (imagePath != null && imagePath.length() > 0) {
 
@@ -109,6 +109,7 @@ public class OpenALPR extends CordovaPlugin {
                 }
 
                 PluginResult cordovaResult = new PluginResult(PluginResult.Status.OK, array);
+
                 // Make sure to call this to release memory
                 alpr.unload();
                 callbackContext.sendPluginResult(cordovaResult);
