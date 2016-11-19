@@ -30,3 +30,4 @@ cordova.plugins.OpenALPR.scan(filepath, function (data) {
 ## Credits
 - License plate scanning based on [OpenALPR](https://github.com/openalpr/openalpr).
 - iOS platform support based on [OpenALPR iOS](https://github.com/twelve17/openalpr-ios).
+- Android platform support based on [OpenALPR Java bindings](https://github.com/openalpr/openalpr/tree/master/src/bindings/java)
