@@ -19,12 +19,11 @@
     if (self = [super init]) {
         
         delegate = new alpr::Alpr(
-                                  [@"us" UTF8String],
+                                  [@"eu" UTF8String],
                                   [[[NSBundle mainBundle] pathForResource:@"openalpr.conf" ofType:nil] UTF8String],
                                   [[[NSBundle mainBundle] pathForResource:@"runtime_data" ofType:nil] UTF8String]
                                   );
         delegate->setTopN(3);
-        delegate->setCountry("eu");
         
         if (delegate->isLoaded() == false) {
             NSLog(@"Error initializing OpenALPR library");
