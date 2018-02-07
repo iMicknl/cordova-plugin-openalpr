@@ -1,3 +1,6 @@
+# Fork
+Note: this is a form from: https://github.com/iMicknl/cordova-plugin-openalpr
+
 # Cordova OpenALPR plugin
 This Cordova plugin adds support for the OpenALPR (Automatic License Plate Recognition) library, which provides support for retrieving the license plate from a picture.
 
