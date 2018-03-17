@@ -1,4 +1,4 @@
-# Cordova OpenALPR plugin
+# Cordova OpenALPR plugin 
 This Cordova plugin adds support for the OpenALPR (Automatic License Plate Recognition) library, which provides support for retrieving the license plate from a picture.
 
 ## Supported platforms
@@ -30,6 +30,7 @@ This Cordova plugin uses custom framework files for iOS which make use of symlin
 
 ## Notes
 - This project includes prebuilt OpenALPR libraries for iOS and Android, because the compilation of the OpenALPR framework requires a lot of effort and dependencies.
+- This project is not used in production anymyore and won't be maintained actively. We can't guarantee that we can respond quickly to issues / pull requests, however we will keep an eye on the repository. [![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 
 ## License
 MIT, but keep in mind that OpenALPR itself is licensed under AGPL-3.0.
