@@ -10,19 +10,19 @@ var OpenALPR = {
     /**
      * Scan license plate with OpenALPR
      *
-     * @param filepath Path to image
-	 * @param country Country to be used, default is eu
+     * @param imageData {string} Base64 encoding of the image data or the image file URI
+	 * @param options {object} Options to pass to the OpenALPR scanner
      * @param success callback function on success
      * @param error callback function on failure.
-     * @returns array licenseplate matches
+     * @returns {array} licenseplate matches
      */
-	scan: function(filepath, options, success, error) {
+	scan: function(imageData, options, success, error) {
 		exec(
 			success,
 			error,
 			'OpenALPR',
 			'scan',
-			[filepath, validateOptions(options)]
+			[imageData, validateOptions(options)]
 		)
 	}
 };
