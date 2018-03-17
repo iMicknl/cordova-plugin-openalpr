@@ -53,10 +53,12 @@ const scanOptions: OpenALPROptions = {
 
 this.camera.getPicture(cameraOptions).then((imageData) => {
     this.openALPR.scan(imageData)
-        .then((result: [string]) => console.log(result))
+        .then((result: [OpenALPRResult]) => console.log(result.number))
         .catch((error: Error) => console.error(error));
 });
  ```
+
+ This plugin is only supported on iOS / Android, however in order to speed up development you can make use of [mocking and browser development](https://github.com/ionic-team/ionic-native#mocking-and-browser-development).
 
 ## Known Issues 
 ### opencv2/highgui/highgui.hpp' file not found when compiling iOS app
@@ -64,7 +66,7 @@ This Cordova plugin uses custom framework files for iOS which make use of symlin
 
 ## Notes
 - This project includes prebuilt OpenALPR libraries for iOS and Android, because the compilation of the OpenALPR framework requires a lot of effort and dependencies.
-- This project is not used in production anymyore and won't be maintained actively. We can't guarantee that we can respond quickly to issues / pull requests, however we will keep an eye on the repository. [![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+- This project is not used in production anymyore and won't be maintained actively. We can't guarantee that we can respond quickly to issues / pull requests, however we will keep an eye on the repository. 
 
 ## License
 MIT, but keep in mind that OpenALPR itself is licensed under AGPL-3.0.
