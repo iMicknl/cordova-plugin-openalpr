@@ -17,17 +17,19 @@
 
 /**
 @brief Initialize the object.
+@param country Country code to scan the plate for.
+@param amount Amount of matches to return.
 @return Platescanner
 */
-- (id) init {
+- (id) init: (NSString *) country amount: (int) amount {
     if (self = [super init]) {
         
         delegate = new alpr::Alpr(
-                                  [@"eu" UTF8String],
+                                  [country UTF8String],
                                   [[[NSBundle mainBundle] pathForResource:@"openalpr.conf" ofType:nil] UTF8String],
                                   [[[NSBundle mainBundle] pathForResource:@"runtime_data" ofType:nil] UTF8String]
                                   );
-        delegate->setTopN(3);
+        delegate->setTopN(amount);
         
         if (delegate->isLoaded() == false) {
             NSLog(@"Error initializing OpenALPR library");

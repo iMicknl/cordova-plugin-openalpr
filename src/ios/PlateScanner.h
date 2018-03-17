@@ -19,6 +19,8 @@ using namespace cv;
 typedef void(^onPlateScanSuccess)(NSArray *);
 typedef void(^onPlateScanFailure)(NSError *);
 
+- (id) init: (NSString *)country amount: (int) amount;
+
 - (void) scanImage:(cv::Mat&)colorImage
          onSuccess:(onPlateScanSuccess)success
          onFailure:(onPlateScanFailure)failure;

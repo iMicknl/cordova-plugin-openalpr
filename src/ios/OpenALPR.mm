@@ -21,12 +21,17 @@ static const std::string base64_chars =
 */
 -(void) scan:(CDVInvokedUrlCommand *)command {
 
-    [self.commandDelegate runInBackground:^{
-        self.plateScanner = [[PlateScanner alloc] init];
+    [self.commandDelegate runInBackground: ^{
+        //Set variables.
+        NSString* imagePath = [command.arguments objectAtIndex:0];
+        NSDictionary *options = [command.arguments objectAtIndex:1];
+        NSString* country = options[@"country"];
+        int amount = [options[@"amount"] integerValue];
+
+        self.plateScanner = [[PlateScanner alloc] init: country amount: amount];
         self.plates = [NSMutableArray arrayWithCapacity:0];
         self.fileManager = [[NSFileManager alloc] init];
 
-        NSString* imagePath = [command.arguments objectAtIndex:0];
         CDVPluginResult* pluginResult = nil;
         cv:Mat image;
 
