@@ -5,18 +5,20 @@
 
 #include <vector>
 #include <string>
+
 using namespace std;
 using namespace cv;
-
 
 static const std::string base64_chars =
 "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 "abcdefghijklmnopqrstuvwxyz"
 "0123456789+/";
 
-
 @implementation OpenALPR
 
+/**
+@brief Command that will scan the given image.
+*/
 -(void) scan:(CDVInvokedUrlCommand *)command {
 
     [self.commandDelegate runInBackground:^{
@@ -27,13 +29,19 @@ static const std::string base64_chars =
         NSString* imagePath = [command.arguments objectAtIndex:0];
         CDVPluginResult* pluginResult = nil;
         cv:Mat image;
+
+        //If imagePath string contains file:// it is a image path.
         if ([imagePath containsString:@"file://"]) {
         
-        // Strip file:// from imagePath where applicable
+        // Strip file:// from imagePath.
             imagePath = [imagePath stringByReplacingOccurrencesOfString:@"file://" withString:@""];
+
+            // Make sure given imagePath exists and 
             if (imagePath && [self.fileManager fileExistsAtPath:imagePath]) {
                 image = imread([imagePath UTF8String], CV_LOAD_IMAGE_COLOR);
             }
+            
+            //If no image can be found at the given file path, throw an error.
             else {
                 NSMutableDictionary* pluginError = [NSMutableDictionary dictionaryWithCapacity:3];
                 [pluginError setValue:[NSNumber numberWithInt:CDV_FILE_NOT_FOUND] forKey:@"code"];
@@ -43,8 +51,9 @@ static const std::string base64_chars =
                 pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:pluginError];
             }
         }
-        //try base64
-        else{
+
+        //In other cases, treat it as a Base64 encoded string.
+        else {
             string strpath = std::string([imagePath UTF8String]);
             string decoded_string = base64_decode(strpath);
             vector<uchar> data(decoded_string.begin(), decoded_string.end());
@@ -53,9 +62,9 @@ static const std::string base64_chars =
         }
 
         [self.plateScanner
-         scanImage:image
-         onSuccess:^(NSArray * results) {
-             for(Plate* plate in results) {
+         scanImage: image
+         onSuccess: ^(NSArray * results) {
+             for (Plate* plate in results) {
                  NSDictionary *dic = @{
                                        @"number" : plate.number,
                                        @"confidence" : [NSNumber numberWithFloat:plate.confidence]
@@ -63,8 +72,9 @@ static const std::string base64_chars =
                  [self.plates addObject:dic];
              }
          }
-         onFailure:^(NSError * error) {
-             dispatch_async(dispatch_get_main_queue(), ^{
+
+         onFailure: ^(NSError * error) {
+             dispatch_async(dispatch_get_main_queue(), ^ {
                  NSMutableDictionary* pluginError = [NSMutableDictionary dictionaryWithCapacity:2];
                  [pluginError setValue:[NSNumber numberWithInt:CDV_UNKNOWN_ERROR] forKey:@"code"];
                  [pluginError setValue:[error localizedDescription] forKey:@"message"];
@@ -80,20 +90,28 @@ static const std::string base64_chars =
                         resultWithStatus    : CDVCommandStatus_OK
                         messageAsArray: self.plates];
      
-
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-
     }];
 }
 
-// Code from: http://www.adp-gmbh.ch/cpp/common/base64.html
-
-
-
+/**
+from: http://www.adp-gmbh.ch/cpp/common/base64.html
+ 
+@brief This function will check if given character is allowed for Base64.
+@param unsigned char c Character to be checked.
+@return bool Result of the check (True/False).
+ */
 static inline bool is_base64(unsigned char c) {
     return (isalnum(c) || (c == '+') || (c == '/'));
 }
 
+/**
+from: http://www.adp-gmbh.ch/cpp/common/base64.html
+ 
+@brief This function will decode a Base64 string.
+@param encoded_string The encoded string.
+@return string The decoded string.
+ */
 std::string base64_decode(std::string const& encoded_string) {
     int in_len = encoded_string.size();
     int i = 0;
@@ -134,6 +152,5 @@ std::string base64_decode(std::string const& encoded_string) {
     
     return ret;
 }
-
 
 @end
