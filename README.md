@@ -1,5 +1,5 @@
 # Cordova OpenALPR plugin
-This Cordova plugin adds support for the OpenALPR (Automatic License Plate Recognition) library, which provides support for retrieving the license plate from a picture.
+This Cordova plugin adds support for the [OpenALPR (Automatic License Plate Recognition) library](https://github.com/openalpr/openalpr), which provides support for retrieving the license plate from a picture.
 
 ## Supported platforms
 The current master branch supports the following platforms:
@@ -15,7 +15,7 @@ This plugin requires Cordova 5.0+ and can be installed from the [Cordova Plugin 
 ## Examples
 
 ### Ionic 1 / PhoneGap
-This plugin defines a global `cordova.plugins.OpenALPR` object, which provides an API for scanning license plates. It is possible to use the output of [cordova-plugin-camera](https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-camera/) and pass it to the scan function of this plugin.
+This plugin defines a global `cordova.plugins.OpenALPR` object which provides an API for scanning license plates. It is possible to use the output of [cordova-plugin-camera](https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-camera/) and pass it to the scan function of this plugin.
 
 ```javascript
 cordova.plugins.OpenALPR.scan(filepath, { country: 'eu', amount: 3 }, function (results) {
