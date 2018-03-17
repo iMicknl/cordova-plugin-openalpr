@@ -7,22 +7,19 @@ The current master branch supports the following platforms:
 - Android (>= SDK 21)
 
 ## Installation
-This plugin requires Cordova 5.0+ and can be installed from the [Cordova Plugin Registry](https://cordova.apache.org/plugins/). 
-`cordova plugin add cordova-plugin-openalpr`
+This plugin requires Cordova 5.0+ and can be installed from the [Cordova Plugin Registry](https://cordova.apache.org/plugins/). If you use Ionic 3, you should also install the `@ionic-native` binding.
 
-If you use Ionic 3, you should also install the `@ionic-native` binding.
+`cordova plugin add cordova-plugin-openalpr`
 `npm install @ionic-native/openalpr`
 
-
-## How to use
+## Examples
 
 ### Ionic 1 / PhoneGap
 This plugin defines a global `cordova.plugins.OpenALPR` object, which provides an API for scanning license plates. It is possible to use the output of [cordova-plugin-camera](https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-camera/) and pass it to the scan function of this plugin.
 
-```
-cordova.plugins.OpenALPR.scan(filepath, { country: 'eu', amount: 3 }, function (data) {
-     //Results
-     console.log(data);
+```javascript
+cordova.plugins.OpenALPR.scan(filepath, { country: 'eu', amount: 3 }, function (results) {
+     console.log(results);
  }, function (error) {
      console.log(error.code + ': ' + error.message)
  });
@@ -30,33 +27,33 @@ cordova.plugins.OpenALPR.scan(filepath, { country: 'eu', amount: 3 }, function (
 ### Ionic 3
 This plugin has a `@ionic-native/openalpr` binding available, which makes it easy to include it in your Ionic 3 project. You can use the output of `@ionic-native/camera` and pass it to the scan function of this plugin.
 
-```
-    import { Camera, CameraOptions } from '@ionic-native/camera';
-    import { OpenALPR, OpenALPROptions, OpenALPRResult } from '@ionic-native/openalpr';
+```typescript
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { OpenALPR, OpenALPROptions, OpenALPRResult } from '@ionic-native/openalpr';
 
-    constructor(private camera: Camera, private openALPR: OpenALPR) {
+constructor(private camera: Camera, private openALPR: OpenALPR) {
 
-    }
+}
 
-    const cameraOptions: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE,
-      sourceType: this.camera.PictureSourceType.CAMERA,
-      allowEdit: false
-    }
+const cameraOptions: CameraOptions = {
+    quality: 100,
+    destinationType: this.camera.DestinationType.FILE_URI,
+    encodingType: this.camera.EncodingType.JPEG,
+    mediaType: this.camera.MediaType.PICTURE,
+    sourceType: this.camera.PictureSourceType.CAMERA,
+    allowEdit: false
+}
 
-    const scanOptions: OpenALPROptions = {
-      country: this.openalpr.Country.EU
-      amount: 3
-    }
+const scanOptions: OpenALPROptions = {
+    country: this.openalpr.Country.EU
+    amount: 3
+}
 
-    this.camera.getPicture(cameraOptions).then((imageData) => {
-      this.openALPR.scan(imageData)
+this.camera.getPicture(cameraOptions).then((imageData) => {
+    this.openALPR.scan(imageData)
         .then((result: [string]) => console.log(result))
         .catch((error: Error) => console.error(error));
-    });
+});
  ```
 
 ## Notes
