@@ -42,8 +42,7 @@ const cameraOptions: CameraOptions = {
     destinationType: this.camera.DestinationType.FILE_URI,
     encodingType: this.camera.EncodingType.JPEG,
     mediaType: this.camera.MediaType.PICTURE,
-    sourceType: this.camera.PictureSourceType.CAMERA,
-    allowEdit: false
+    sourceType: this.camera.PictureSourceType.CAMERA
 }
 
 const scanOptions: OpenALPROptions = {
