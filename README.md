@@ -1,5 +1,5 @@
 # Cordova OpenALPR plugin
-This Cordova plugin adds support for the [OpenALPR (Automatic License Plate Recognition) library](https://github.com/openalpr/openalpr), which provides support for retrieving the license plate from a picture.
+This Cordova plugin adds support for the [OpenALPR (Automatic License Plate Recognition) library](https://github.com/openalpr/openalpr) which provides support for retrieving the license plate from a picture. You can pass an image using Base64 or the file path to the OpenALPR plugin.
 
 ## Supported platforms
 The current master branch supports the following platforms:
@@ -47,7 +47,7 @@ const cameraOptions: CameraOptions = {
 }
 
 const scanOptions: OpenALPROptions = {
-    country: this.openalpr.Country.EU
+    country: this.openalpr.Country.EU,
     amount: 3
 }
 
@@ -63,6 +63,9 @@ this.camera.getPicture(cameraOptions).then((imageData) => {
 ## Known Issues 
 ### opencv2/highgui/highgui.hpp' file not found when compiling iOS app
 This Cordova plugin uses custom framework files for iOS which make use of symlinks on MacOS. Symlinks can break when the plugin is either downloaded on Windows and then moved to an MacOS machine or when the plugin is pulled from the Cordova plugin repo / npm without the symlinks being present in the archive [as described in this Cordova bug](https://issues.apache.org/jira/browse/CB-6092). You can solve this by [using a hook](https://docs.microsoft.com/en-us/visualstudio/cross-platform/tools-for-cordova/tips-workarounds/ios-plugin-symlink-fix-readme?view=toolsforcordova-2015) which fixes the issue before compiling. If you don't want to use a hook, you can also manually fix the files as described [here](https://github.com/iMicknl/cordova-plugin-openalpr/issues/12) or clone the repository from Github and add it to your project.
+
+### Android: PictureSourceType.PHOTOLIBRARY isn't supported (yet)
+In Android apps, passing the file uri from PictureSourceType.PHOTOLIBRARY isn't supported yet.
 
 ## Notes
 - This project includes prebuilt OpenALPR libraries for iOS and Android, because the compilation of the OpenALPR framework requires a lot of effort and dependencies.
