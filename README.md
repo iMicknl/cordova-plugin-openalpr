@@ -64,7 +64,7 @@ this.camera.getPicture(cameraOptions).then((imageData) => {
 This Cordova plugin uses custom framework files for iOS which make use of symlinks on MacOS. Symlinks can break when the plugin is either downloaded on Windows and then moved to an MacOS machine or when the plugin is pulled from the Cordova plugin repo / npm without the symlinks being present in the archive [as described in this Cordova bug](https://issues.apache.org/jira/browse/CB-6092). You can solve this by [using a hook](https://docs.microsoft.com/en-us/visualstudio/cross-platform/tools-for-cordova/tips-workarounds/ios-plugin-symlink-fix-readme?view=toolsforcordova-2015) which fixes the issue before compiling. If you don't want to use a hook, you can also manually fix the files as described [here](https://github.com/iMicknl/cordova-plugin-openalpr/issues/12) or clone the repository from Github and add it to your project.
 
 ### Android: PictureSourceType.PHOTOLIBRARY isn't supported (yet)
-In Android apps, passing the file uri from PictureSourceType.PHOTOLIBRARY isn't supported yet.
+In Android apps, passing the file uri from PictureSourceType.PHOTOLIBRARY isn't supported yet. This is because the photolibrary returns a different kind of path than the camera does. The cordova-plugin-filepath might provide a workaround for now but this has not been tested yet.
 
 ## Notes
 - This project includes prebuilt OpenALPR libraries for iOS and Android, because the compilation of the OpenALPR framework requires a lot of effort and dependencies.
