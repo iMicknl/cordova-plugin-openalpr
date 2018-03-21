@@ -54,7 +54,7 @@ const scanOptions: OpenALPROptions = {
 
 this.camera.getPicture(cameraOptions).then((imageData) => {
     this.openALPR.scan(imageData)
-        .then((result: [OpenALPRResult]) => console.log(result.number))
+        .then((result: [OpenALPRResult]) => console.log(result[0].number))
         .catch((error: Error) => console.error(error));
 });
  ```
@@ -70,7 +70,7 @@ In Android apps, passing the file uri from PictureSourceType.PHOTOLIBRARY isn't 
 
 ## Notes
 - This project includes prebuilt OpenALPR libraries for iOS and Android, because the compilation of the OpenALPR framework requires a lot of effort and dependencies.
-- This project is not used in production anymyore and won't be maintained actively. We can't guarantee that we can respond quickly to issues / pull requests, however we will keep an eye on the repository. 
+- This project is not used in production anymore and won't be maintained actively. We can't guarantee that we can respond quickly to issues / pull requests, however we will keep an eye on the repository. 
 
 ## License
 MIT, but keep in mind that OpenALPR itself is licensed under AGPL-3.0.
