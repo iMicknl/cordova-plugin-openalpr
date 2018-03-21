@@ -29,6 +29,7 @@ cordova.plugins.OpenALPR.scan(filepath, { country: 'eu', amount: 3 }, function (
 ### Ionic 3
 This plugin has a `@ionic-native/openalpr` binding available, which makes it easy to include it in your Ionic 3 project. You can use the output of `@ionic-native/camera` and pass it to the scan function of this plugin. *At the moment the binding isn't published in the `@ionic-native` repository yet, so you can import the binding using `cordova-plugin-openalpr/native`.*
 
+There is also an [Ionic 3 example project](https://github.com/melvinversluijs/ionic3-sample) available which shows the possible implementation of cordova-plugin-openalpr.
 
 ```typescript
 import { Camera, CameraOptions } from '@ionic-native/camera';
