@@ -15,27 +15,42 @@
     alpr::Alpr* delegate;
 }
 
-- (id) init {
+/**
+@brief Initialize the object.
+@param country Country code to scan the plate for.
+@param amount Amount of matches to return.
+@return Platescanner
+*/
+- (id) init: (NSString *) country amount: (int) amount {
     if (self = [super init]) {
         
         delegate = new alpr::Alpr(
-                                  [@"us" UTF8String],
+                                  [country UTF8String],
                                   [[[NSBundle mainBundle] pathForResource:@"openalpr.conf" ofType:nil] UTF8String],
                                   [[[NSBundle mainBundle] pathForResource:@"runtime_data" ofType:nil] UTF8String]
                                   );
-        delegate->setTopN(3);
-        delegate->setCountry("eu");
+        delegate->setTopN(amount);
         
         if (delegate->isLoaded() == false) {
             NSLog(@"Error initializing OpenALPR library");
             delegate = nil;
         }
-        if (!delegate) self = nil;
+
+        if (! delegate) {
+            self = nil;
+        }
     }
+
     return self;
-    
 }
 
+/**
+@brief Scan the given image using the OpenALPR library.
+@param colorImage An image object containing the image to be scanned.
+@param onSuccess A function to be called after a successfull execution.
+@param onFailure A function to be called after a failed execution.
+@return array
+*/
 - (void)scanImage:(cv::Mat &)colorImage
         onSuccess:(onPlateScanSuccess)success
         onFailure:(onPlateScanFailure)failure {
@@ -51,6 +66,7 @@
     
     NSMutableArray *bestPlates = [[NSMutableArray alloc]initWithCapacity:results.plates.size()];
     
+    //Push all results to the response array.
     for (int i = 0; i < results.plates.size(); i++) {
         alpr::AlprPlateResult plateResult = results.plates[i];
         [bestPlates addObject:[[Plate alloc]initWithAlprPlate:&plateResult.bestPlate]];

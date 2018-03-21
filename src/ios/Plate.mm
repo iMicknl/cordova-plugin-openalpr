@@ -10,6 +10,10 @@
 
 @implementation Plate
 
+/**
+@brief Initialize a Plate object.
+@return Plate
+*/
 - (id)initWithAlprPlate:(alpr::AlprPlate *)plate {
     if (self = [super init]) {
         self.number = [NSString stringWithCString:plate->characters.c_str()
