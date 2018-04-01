@@ -70,7 +70,7 @@ public class OpenALPR extends CordovaPlugin {
             imagePath = imagePath.replace("file://", "");
 
             //Make sure a image exists for given path.
-            if (imagePath == null || imagePath.length() > 0 || new File(imagePath).isFile()) {
+            if (imagePath == null || imagePath.length() == 0 || ! new File(imagePath).isFile()) {
                 //Otherwise return an error.
                 returnError("No image found for given file path", callbackContext);
             }
